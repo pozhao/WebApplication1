@@ -11,12 +11,14 @@ body {
 		@include square(100px, $radius: 10px);*/ }
   body span {
     color: red; }
-  body .table th {
-    width: 5%;
-    white-space: nowrap; }
-  body .table td {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis; }
-  body .table a {
-    white-space: nowrap; }
+  body .table {
+    table-layout: fixed; }
+    body .table th {
+      width: 5%;
+      white-space: nowrap; }
+    body .table td {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis; }
+    body .table a {
+      white-space: nowrap; }

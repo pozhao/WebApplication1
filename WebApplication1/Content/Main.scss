@@ -14,7 +14,6 @@
 	/*width: $size;
 	height: $size;
 	border: 1px solid blue;*/
-
 	@if $radius != 0 {
 		border-radius: $radius;
 	}
@@ -45,9 +44,11 @@ body {
 	}
 
 	.table {
+		table-layout: fixed;
+
 		th {
 			width: 5%;
-			white-space: nowrap;			
+			white-space: nowrap;
 		}
 
 		td {

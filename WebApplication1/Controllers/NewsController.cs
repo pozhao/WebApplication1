@@ -17,7 +17,7 @@ namespace WebApplication1.Controllers
         private Entities db = new Entities();
 
         // GET: News
-        public ActionResult Index(string Sorting_Order, string SearchTitle, string SearchContent, string SearchDate)
+        public ActionResult Index(string Sorting_Order, string SearchTitle, string SearchContent, string SearchDate, string SearchKind)
         {
             ViewData["SortingTitle"] = Sorting_Order == "Title_Enroll" ? "Title_Description" : "Title_Enroll";
             ViewData["SortingDate"] = String.IsNullOrEmpty(Sorting_Order) ? "Date_Enroll" : "";
@@ -32,7 +32,8 @@ namespace WebApplication1.Controllers
                                                                      content = n.content,
                                                                      begin_date = n.begin_date,
                                                                      end_date = n.end_date,
-                                                                     top_news = n.top_news
+                                                                     top_news = n.top_news,
+                                                                     kind = n.news_kind
                                                                     }).AsEnumerable();
 
             var sqlNews2 = db.cs_news.Where(n => n.enabled == "Y" && n.begin_date <= DateTime.Now && n.top_news != "Y")
@@ -43,7 +44,8 @@ namespace WebApplication1.Controllers
                                                                         content = n.content,
                                                                         begin_date = n.begin_date,
                                                                         end_date = n.end_date,
-                                                                        top_news = n.top_news
+                                                                        top_news = n.top_news,
+                                                                        kind = n.news_kind
                                                                     }).AsEnumerable();
 
             if (String.IsNullOrEmpty(SearchTitle) == false)
@@ -69,6 +71,12 @@ namespace WebApplication1.Controllers
                     sqlNews2 = sqlNews2.Where(n => DateTime.Compare(dteSearch, n.begin_date) >= 0 &&
                                                    (n.end_date is null || DateTime.Compare((DateTime)n.end_date, dteSearch) >= 0));
                 }
+            }
+
+            if (String.IsNullOrEmpty(SearchKind) == false)
+            {
+                sqlNews1 = sqlNews1.Where(n => n.kind == SearchKind);
+                sqlNews2 = sqlNews2.Where(n => n.kind == SearchKind);
             }
 
             switch (Sorting_Order)
@@ -132,13 +140,31 @@ namespace WebApplication1.Controllers
             lstItem.Add(new SelectListItem()
             {
                 Value = "1",
-                Text = "時事"
+                Text = "即時新聞"
             });
 
             lstItem.Add(new SelectListItem()
             {
                 Value = "2",
-                Text = "財經"
+                Text = "重大政策"
+            });
+
+            lstItem.Add(new SelectListItem()
+            {
+                Value = "3",
+                Text = "業務新訊"
+            });
+
+            lstItem.Add(new SelectListItem()
+            {
+                Value = "4",
+                Text = "活動快訊"
+            });
+
+            lstItem.Add(new SelectListItem()
+            {
+                Value = "5",
+                Text = "就業資訊"
             });
 
             objNews.kind_list = lstItem.AsEnumerable();

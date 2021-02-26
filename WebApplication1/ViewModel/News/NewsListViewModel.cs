@@ -29,6 +29,8 @@ namespace WebApplication1.ViewModel.News
             public string begin_end_date { get; set; }
             [Display(Name = "新聞置頂")]
             public string top_news { get; set; }
+            [Display(Name = "新聞類別")]
+            public string kind { get; set; }
         }
     }
 }
