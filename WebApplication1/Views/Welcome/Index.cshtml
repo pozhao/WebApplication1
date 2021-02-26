@@ -1,0 +1,28 @@
+﻿
+@{
+	ViewBag.Title = "View";
+}
+
+@section scripts {
+	<script>
+		$(document).ready(function () {
+			console.log('haha');
+		});
+	</script>
+}
+
+<h2>View</h2>
+@Html.ActionLink("相同Controller傳值", "RedirectToAction")
+<br />
+@Html.ActionLink("不同Controller傳值", "RedirectToController")
+
+
+<div>
+	<span>
+		@ViewBag.AA
+	</span>
+</div>
+
+@section test{
+	<div style="font-size: large; font-weight: bold; color: red;">HEHE</div>
+}
