@@ -15,10 +15,22 @@ body {
     table-layout: fixed; }
     body .table th {
       width: 5%;
-      white-space: nowrap; }
-    body .table td {
+      white-space: nowrap;
+      vertical-align: middle !important; }
+    body .table td.ellipse {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis; }
     body .table a {
       white-space: nowrap; }
+  body a.page {
+    background-color: transparent;
+    color: #337ab7;
+    margin-right: 5px;
+    padding: 3px 7px;
+    border-radius: 0px; }
+  body a.active {
+    background-color: darkgray !important;
+    color: white;
+    border-radius: 5px;
+    pointer-events: none; }

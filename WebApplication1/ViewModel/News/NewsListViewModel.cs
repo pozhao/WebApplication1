@@ -9,9 +9,9 @@ using System.Web.Mvc;
 
 namespace WebApplication1.ViewModel.News
 {
-    public class NewsListViewModel
+    public class NewsListViewModel : Pager
     {
-        public string kind_code { get; set; }
+        public string kind_name { get; set; }
         public IEnumerable<SelectListItem> kind_list { get; set; }
         public List<News> news_list { get; set; }
 
@@ -32,5 +32,10 @@ namespace WebApplication1.ViewModel.News
             [Display(Name = "新聞類別")]
             public string kind { get; set; }
         }
+    }
+
+    public class Pager {
+        public int page_index { get; set; }
+        public int page_count { get; set; }
     }
 }

@@ -49,9 +49,10 @@ body {
 		th {
 			width: 5%;
 			white-space: nowrap;
+			vertical-align: middle !important;
 		}
 
-		td {
+		td.ellipse {
 			white-space: nowrap;
 			overflow: hidden;
 			text-overflow: ellipsis;
@@ -60,5 +61,20 @@ body {
 		a {
 			white-space: nowrap;
 		}
+	}
+
+	a.page {
+		background-color: transparent;
+		color: #337ab7;
+		margin-right: 5px;
+		padding: 3px 7px;
+		border-radius: 0px;
+	}
+
+	a.active {
+		background-color: darkgray !important;
+		color: white;
+		border-radius: 5px;
+		pointer-events: none;
 	}
 }

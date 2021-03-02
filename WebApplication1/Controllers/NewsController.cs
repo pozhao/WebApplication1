@@ -17,8 +17,16 @@ namespace WebApplication1.Controllers
         private Entities db = new Entities();
 
         // GET: News
-        public ActionResult Index(string Sorting_Order, string SearchTitle, string SearchContent, string SearchDate, string SearchKind)
+        public ActionResult Index(string Sorting_Order, string SearchTitle, string SearchContent,
+                                  string SearchDate, string SearchKind, int PageIndex = 1)
         {
+            ViewData["Sorting_Order"] = Sorting_Order;
+            ViewData["SearchTitle"] = SearchTitle;
+            ViewData["SearchContent"] = SearchContent;
+            ViewData["SearchDate"] = SearchDate;
+            ViewData["SearchKind"] = SearchKind;
+            ViewData["PageIndex"] = PageIndex;
+
             ViewData["SortingTitle"] = Sorting_Order == "Title_Enroll" ? "Title_Description" : "Title_Enroll";
             ViewData["SortingDate"] = String.IsNullOrEmpty(Sorting_Order) ? "Date_Enroll" : "";
 
@@ -99,7 +107,13 @@ namespace WebApplication1.Controllers
                     break;
             }
 
-            var lstNews = sqlNews1.Concat(sqlNews2).ToList();
+            var sqlNews = sqlNews1.Concat(sqlNews2);
+            int newsCount = sqlNews.Count();
+            int pageSize = 5;
+            PageIndex = PageIndex < 1 ? 1 : PageIndex;
+            int totalPage = Convert.ToInt32(Math.Ceiling(Convert.ToDouble(newsCount) / Convert.ToDouble(pageSize)));
+
+            var lstNews = sqlNews1.Concat(sqlNews2).Skip((PageIndex - 1) * pageSize).Take(pageSize).ToList();
 
             lstNews.ForEach(
                 n => {
@@ -167,7 +181,10 @@ namespace WebApplication1.Controllers
                 Text = "就業資訊"
             });
 
+            objNews.kind_name = "kind_name";
             objNews.kind_list = lstItem.AsEnumerable();
+            objNews.page_index = PageIndex;
+            objNews.page_count = totalPage;
 
             return View(objNews);
         }
