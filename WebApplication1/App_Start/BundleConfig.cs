@@ -17,18 +17,19 @@ namespace WebApplication1
                       "~/Scripts/bootstrap/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js",
                       "~/Scripts/bootstrap/bootstrap-datetimepicker/bootstrap-datetimepicker.zh-TW.js",
                       "~/Scripts/modernizr/modernizr-*",
-                      "~/Scripts/Main.js"));
+                      "~/Scripts/pace/pace.min.js",
+                      "~/Scripts/Main.js"
+                      ));
 
             bundles.Add(new StyleBundle("~/bundles/css").Include(
                       "~/Content/bootstrap/bootstrap.min.css",
                       "~/Content/bootstrap/bootstrap-theme.min.css",
                       "~/Content/bootstrap/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css",
+                      "~/Content/pace-themes/orange/pace-theme-minimal.css",
                       "~/Content/site.css",
-                      "~/Content/Main.min.css",
-                      "~/Content/pace-themes/orange/pace-theme-loading-bar.css"));
+                      "~/Content/Main.min.css"
+                      ));
 
-            //bundles.Add(new ScriptBundle("~/bundles/pace").Include(
-            //          "~/Scripts/pace.js"));
         }
     }
 }

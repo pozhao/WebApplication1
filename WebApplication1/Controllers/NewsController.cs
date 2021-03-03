@@ -110,8 +110,16 @@ namespace WebApplication1.Controllers
             var sqlNews = sqlNews1.Concat(sqlNews2);
             int newsCount = sqlNews.Count();
             int pageSize = 5;
-            PageIndex = PageIndex < 1 ? 1 : PageIndex;
             int totalPage = Convert.ToInt32(Math.Ceiling(Convert.ToDouble(newsCount) / Convert.ToDouble(pageSize)));
+
+            if (PageIndex > totalPage)
+            {
+                PageIndex = totalPage;
+            }
+            else
+            {
+                PageIndex = PageIndex < 1 ? 1 : PageIndex;
+            }
 
             var lstNews = sqlNews1.Concat(sqlNews2).Skip((PageIndex - 1) * pageSize).Take(pageSize).ToList();
 

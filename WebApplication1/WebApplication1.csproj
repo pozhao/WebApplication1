@@ -577,7 +577,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Welcome\Index.cshtml" />
     <Content Include="Views\Welcome\Details.cshtml" />
-    <Content Include="Views\Shared\Aside.cshtml" />
+    <Content Include="Views\Shared\_Aside.cshtml" />
     <Content Include="Views\News\Create.cshtml" />
     <Content Include="Views\News\Delete.cshtml" />
     <Content Include="Views\News\Details.cshtml" />
@@ -588,7 +588,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\QA\" />
     <Folder Include="Views\Test\" />
   </ItemGroup>
   <ItemGroup>
