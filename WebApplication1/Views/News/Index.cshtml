@@ -93,7 +93,7 @@
 		</tr>
 	}
 </table>
-@{for (int i = 0; i < Model.page_count; i++)
+@{for (int i = 0; i < Model.Page_count; i++)
 	{
 		@Html.ActionLink((i + 1).ToString(), "Index",
 						 new { Sorting_Order = ViewData["Sorting_Order"],

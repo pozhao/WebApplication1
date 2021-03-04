@@ -6,14 +6,18 @@ using System.ComponentModel.DataAnnotations;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Web.Mvc;
+using WebApplication1.ViewModel.Shared;
 
 namespace WebApplication1.ViewModel.News
 {
     public class NewsListViewModel : Pager
     {
-        public string kind_name { get; set; }
+        internal string kind_name { get; set; }
         public IEnumerable<SelectListItem> kind_list { get; set; }
         public List<News> news_list { get; set; }
+        public int Page_index { get ; set ; }
+        public int Page_count { get; set; }
+        //internal List<Breadcrumbs> breadcrumbs_list { get; set; }
 
         public class News {
             public int news_id { get; set; }
@@ -34,8 +38,5 @@ namespace WebApplication1.ViewModel.News
         }
     }
 
-    public class Pager {
-        public int page_index { get; set; }
-        public int page_count { get; set; }
-    }
+
 }

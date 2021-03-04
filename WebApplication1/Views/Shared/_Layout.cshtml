@@ -28,9 +28,11 @@
             </div>
         </div>
     </div>
-	<div class="d-flex">
-		@{Html.RenderPartial("_Aside", new ViewDataDictionary { { "message", "From RenderPartial." } });}
+	<div>
 		<div class="container body-content">
+			<div class="font-weight-bold">
+				@{Html.RenderPartial("_Breadcrumbs", ViewData["breadcrumbs_list"]);}
+			</div>
 			@RenderBody()
 			<hr />
 			<footer>

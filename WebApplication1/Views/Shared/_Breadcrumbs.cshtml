@@ -1,0 +1,14 @@
+﻿@model  List<WebApplication1.ViewModel.Shared.Breadcrumbs>
+
+@{int index = 0; }
+
+@foreach (var item in ViewData["breadcrumbs_list"])
+{
+	Html.ActionLink(item.name, item.action, item.controller);
+
+	if (index > 0)
+	{
+		<span> > </span>
+	}
+	index += 1;
+}

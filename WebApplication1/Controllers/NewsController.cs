@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication1.Models;
+using WebApplication1.ViewModel.Shared;
 using WebApplication1.ViewModel.News;
 using PagedList;
 
@@ -31,7 +32,7 @@ namespace WebApplication1.Controllers
             ViewData["SortingDate"] = String.IsNullOrEmpty(Sorting_Order) ? "Date_Enroll" : "";
 
             //(n.end_date == null || DateTime.Now < n.end_date)
-
+            
             var sqlNews1 = db.cs_news.Where(n => n.enabled == "Y" && n.begin_date <= DateTime.Now && n.top_news =="Y")
                                      .Select(n => new NewsListViewModel.News
                                                                     {
@@ -191,8 +192,25 @@ namespace WebApplication1.Controllers
 
             objNews.kind_name = "kind_name";
             objNews.kind_list = lstItem.AsEnumerable();
-            objNews.page_index = PageIndex;
-            objNews.page_count = totalPage;
+
+            var lstBreadcrumbs = new List<Breadcrumbs>();
+            lstBreadcrumbs.Add(new Breadcrumbs()
+            {
+                name = "首頁",
+                action = "Index",
+                controller = "Home"
+            });
+
+            lstBreadcrumbs.Add(new Breadcrumbs()
+            {
+                name = "新聞",
+                action = "Index",
+                controller = "/News"
+            });
+
+            ViewData["breadcrumbs_list"] = lstBreadcrumbs;
+            objNews.Page_index = PageIndex;
+            objNews.Page_count = totalPage;
 
             return View(objNews);
         }

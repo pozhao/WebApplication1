@@ -34,3 +34,9 @@ body {
     color: white;
     border-radius: 5px;
     pointer-events: none; }
+
+.d-flex {
+  display: flex; }
+
+.font-weight-bold {
+  font-weight: bold; }
